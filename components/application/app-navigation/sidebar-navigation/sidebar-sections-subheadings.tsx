@@ -23,9 +23,11 @@ export const SidebarNavigationSectionsSubheadings = ({ activeUrl = "/", items }:
             style={
                 {
                     "--width": `${MAIN_SIDEBAR_WIDTH}px`,
+                    scrollbarWidth: "none",
+                    msOverflowStyle: "none",
                 } as React.CSSProperties
             }
-            className="flex h-full w-full max-w-full flex-col justify-between overflow-auto bg-primary pt-4 shadow-xs ring-secondary ring-inset lg:w-(--width) lg:rounded-xl lg:ring-1"
+            className="flex h-full w-full max-w-full flex-col justify-between overflow-y-auto bg-primary pt-4 shadow-xs ring-secondary ring-inset lg:w-(--width) lg:rounded-xl lg:ring-1 [&::-webkit-scrollbar]:hidden"
         >
             <div className="flex items-center justify-between gap-5 px-4 lg:pl-5">
                 <UntitledLogo className="h-6" />
