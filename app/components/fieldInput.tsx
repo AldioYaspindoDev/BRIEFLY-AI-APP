@@ -49,7 +49,7 @@ const FileChip = ({
     item: AttachedFile;
     onRemove: (id: string) => void;
 }) => (
-    <div className="inline-flex max-w-[200px] items-center gap-1.5 rounded-xl border border-white/10 bg-[#0d1f11] px-2 py-1.5">
+    <div className="inline-flex max-w-50 items-center gap-1.5 rounded-xl border border-white/10 bg-[#0d1f11] px-2 py-1.5">
         {item.previewUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -64,7 +64,7 @@ const FileChip = ({
         )}
 
         <div className="flex min-w-0 flex-col">
-            <span className="max-w-[110px] truncate text-[11.5px] font-medium text-gray-200">
+            <span className="max-w-27.5 truncate text-[11.5px] font-medium text-gray-200">
                 {item.file.name}
             </span>
             <span className="text-[10px] text-gray-500">{formatBytes(item.file.size)}</span>
@@ -88,7 +88,7 @@ const ChatBubble = ({ msg }: { msg: Conversation }) => {
     return (
         <div className={`flex w-full ${isUser ? "justify-end" : "justify-start"} mb-3`}>
             {!isUser && (
-                <div className="mr-2.5 mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#00e676] to-[#00a152] text-[10px] font-bold text-[#061008]">
+                <div className="mr-2.5 mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-[#00e676] to-[#00a152] text-[10px] font-bold text-[#061008]">
                     AI
                 </div>
             )}
@@ -128,7 +128,7 @@ const ChatBubble = ({ msg }: { msg: Conversation }) => {
                             ),
                             // Code block
                             pre: ({ children }) => (
-                                <pre className="mb-2 overflow-x-auto rounded-xl bg-[#071209] px-4 py-3 font-mono text-[12.5px] text-[#00e676] ring-1 ring-white/[0.05]">
+                                <pre className="mb-2 overflow-x-auto rounded-xl bg-[#071209] px-4 py-3 font-mono text-[12.5px] text-[#00e676] ring-1 ring-white/5">
                                     {children}
                                 </pre>
                             ),
@@ -154,7 +154,7 @@ const ChatBubble = ({ msg }: { msg: Conversation }) => {
 
 const TypingIndicator = () => (
     <div className="flex items-end gap-2.5 mb-3">
-        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#00e676] to-[#00a152] text-[10px] font-bold text-[#061008]">
+        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-[#00e676] to-[#00a152] text-[10px] font-bold text-[#061008]">
             AI
         </div>
         <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-sm bg-[#0c1a0f] px-4 py-3 ring-1 ring-white/[0.07]">
@@ -273,11 +273,11 @@ export const InputArea = () => {
     const canSend = (value.trim().length > 0 || attachments.length > 0) && !isLoading;
 
     return (
-        <div className="mx-auto flex w-full max-w-[760px] flex-col">
+        <div className="mx-auto flex w-full max-w-190 flex-col">
 
             {/* ── Area percakapan ────────────────────────────────────────── */}
             {conversation.length > 0 && (
-                <div className="mb-4 max-h-[60vh] overflow-y-auto px-1 pr-2 [scrollbar-width:thin] [scrollbar-color:#1a2e1d_transparent]">
+                <div className="mb-4 max-h-[60vh] overflow-y-auto px-1 pr-2 scrollbar-thin [scrollbar-color:#1a2e1d_transparent]">
                     {conversation.map((msg, i) => (
                         <ChatBubble key={i} msg={msg} />
                     ))}
@@ -325,7 +325,7 @@ export const InputArea = () => {
                     placeholder="Tanyakan seputar Copywriting & Marketing…"
                     aria-label="Pesan"
                     disabled={isLoading}
-                    className="min-h-6 w-full resize-none overflow-y-auto border-none bg-transparent text-[14.5px] leading-relaxed text-gray-100 outline-none placeholder:text-gray-600 disabled:opacity-50 [font-family:inherit] [max-height:200px]"
+                    className="min-h-6 w-full resize-none overflow-y-auto border-none bg-transparent text-[14.5px] leading-relaxed text-gray-100 outline-none placeholder:text-gray-600 disabled:opacity-50 font-[inherit] max-h-50"
                 />
 
                 {/* ── Toolbar ───────────────────────────────────────────── */}
@@ -351,7 +351,7 @@ export const InputArea = () => {
                                 onClick={() => fileInputRef.current?.click()}
                                 aria-label="Lampirkan file"
                                 disabled={isLoading}
-                                className="flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-[10px] border-0 bg-transparent text-gray-500 transition-colors duration-150 hover:bg-[#00e676]/10 hover:text-[#00e676] disabled:cursor-not-allowed disabled:opacity-40"
+                                className="flex h-8.5 w-8.5 cursor-pointer items-center justify-center rounded-[10px] border-0 bg-transparent text-gray-500 transition-colors duration-150 hover:bg-[#00e676]/10 hover:text-[#00e676] disabled:cursor-not-allowed disabled:opacity-40"
                             >
                                 <Attachment01 size={18} />
                             </button>
@@ -374,7 +374,7 @@ export const InputArea = () => {
                             "transition-all duration-200",
                             canSend
                                 ? [
-                                    "cursor-pointer bg-gradient-to-br from-[#00e676] to-[#00a152] text-[#061008]",
+                                    "cursor-pointer bg-linear-to-br from-[#00e676] to-[#00a152] text-[#061008]",
                                     "shadow-[0_2px_12px_rgba(0,230,118,0.45)]",
                                     "hover:scale-105 hover:shadow-[0_4px_20px_rgba(0,230,118,0.65)]",
                                     "active:scale-95",
@@ -384,7 +384,7 @@ export const InputArea = () => {
                     >
                         {/* Inner gloss overlay */}
                         {canSend && (
-                            <span className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-b from-white/20 to-transparent" />
+                            <span className="pointer-events-none absolute inset-0 rounded-xl bg-linear-to-b from-white/20 to-transparent" />
                         )}
 
                         {isLoading ? (
