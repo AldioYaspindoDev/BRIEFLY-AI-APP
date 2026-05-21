@@ -1,6 +1,6 @@
 "use client";
 
-import registerData from "@/app/data/registerData";
+import loginData from "@/app/data/loginData";
 import { useState } from "react";
 import Router from "next/router";
 
@@ -16,7 +16,7 @@ export default function LoginPage(){
         setLoading(true);
 
         try {
-            const result = await registerData([{
+            const result = await loginData([{
                 email,
                 password
             }]);    
