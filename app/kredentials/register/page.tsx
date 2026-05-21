@@ -2,12 +2,14 @@
 
 import registerData from "@/app/data/registerData";
 import { useState } from "react";
+import Router from "next/router";
 
 export default function RegisterPage() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const router = Router;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -30,14 +32,14 @@ export default function RegisterPage() {
     }
 
     return(
-        <section>
-            <div>
+        <section className="p-20">
+            <div >
                 <h1>
                     Register
                 </h1> 
             </div>
 
-            <div>
+            <div className="py-2 gap-y-10">
                 <form onSubmit={handleSubmit}>
                     <div>
                         <input 
@@ -76,6 +78,12 @@ export default function RegisterPage() {
                             >
                                 {loading? "Memproses" : "Dafter Sekarang"}
                         </button>
+
+                        <div>
+                            <a href="/kredentials/login">
+                                login
+                            </a>
+                        </div>
                     </div>
                 </form>
             </div>
